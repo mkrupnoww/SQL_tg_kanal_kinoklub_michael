@@ -1,0 +1,218 @@
+WITH action AS (
+  SELECT 'боевик' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%боевик%'
+), 
+drama AS (
+  SELECT 'драма' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%драма%'
+), 
+adventure AS (
+  SELECT 'приключения' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%приключения%'
+), 
+melodrama AS (
+  SELECT 'мелодрама' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%мелодрама%'
+),
+comedy AS (
+  SELECT 'комедия' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%комедия%'
+),
+horror AS (
+  SELECT 'ужасы' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%ужасы%'
+),
+sci_fi AS (
+  SELECT 'фантастика' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%фантастика%'
+),
+cartoon AS (
+  SELECT 'мультфильм' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%мультфильм%'
+),
+anime AS (
+  SELECT 'аниме' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%аниме%'
+),
+fantasy AS (
+  SELECT 'фэнтези' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%фэнтези%'
+),
+doc AS (
+  SELECT 'документальный' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%документальный%'
+),
+music AS (
+  SELECT 'музыка' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND (text_post LIKE '%музыка%' OR text_post LIKE '%мюзикл%')
+),
+thriller AS (
+  SELECT 'триллер' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%триллер%'
+),
+family AS (
+  SELECT 'семейный' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%семейный%'
+),
+biography AS (
+  SELECT 'биография' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%биография%'
+),
+crime AS (
+  SELECT 'криминал' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%криминал%'
+),
+detective AS (
+  SELECT 'детектив' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%детектив%'
+),
+western AS (
+  SELECT 'вестерн' AS ЖАНР, count(id_post) AS КОЛИЧЕСТВО
+  FROM tg.post_stat ps 
+  WHERE text_post LIKE '%Страна%'
+    AND text_post LIKE '%Описание%'
+    AND text_post LIKE '%Режиссер%'
+    AND text_post LIKE '%Рейтинг%'
+    AND text_post LIKE '%Жанр%'
+    AND text_post LIKE '%вестерн%'
+)
+SELECT ЖАНР, КОЛИЧЕСТВО
+FROM action
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM drama
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM adventure
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM melodrama
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM comedy
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM horror
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM sci_fi
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM cartoon
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM anime
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM fantasy
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM doc
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM music
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM thriller
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM family
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM biography
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM crime
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM detective
+UNION ALL
+SELECT ЖАНР, КОЛИЧЕСТВО FROM western
+ORDER BY КОЛИЧЕСТВО DESC;
+

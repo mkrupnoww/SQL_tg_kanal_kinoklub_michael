@@ -1,0 +1,26 @@
+WITH views_ads_tab AS (
+SELECT DATE_TRUNC('day', date_pub)::date AS day_date,
+       sum(views) AS sum_views_ads
+FROM tg.post_stat ps 
+WHERE views < 150000 
+  AND DATE_TRUNC('day', date_pub)::date > '2022-10-09'
+  AND text_post NOT LIKE '%Страна%'
+  AND text_post NOT LIKE '%Жанр%'
+  AND text_post NOT LIKE '%Описание%'
+  AND text_post NOT LIKE '%Режиссер%'
+  AND text_post NOT LIKE '%Рейтинг%'
+  AND text_post NOT LIKE '%На фото кадры из фильмов%'
+  AND text_post NOT LIKE '%прошлой недели%'
+  AND text_post NOT LIKE '%Фрагмент из фильма%'
+GROUP BY day_date
+ORDER BY day_date
+)
+SELECT day_date AS "Дата",
+       sum_views_ads "Просмотры",
+       round(  AVG(sum_views_ads) OVER (ORDER BY day_date DESC
+                                 ROWS BETWEEN 49 PRECEDING AND CURRENT ROW)
+                                 ) AS "50-я скользящая средняя"
+FROM views_ads_tab
+ORDER BY day_date;
+
+

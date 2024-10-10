@@ -1,0 +1,26 @@
+WITH count_ads_tab AS (
+SELECT DATE_TRUNC('day', date_pub)::date AS day_date,
+       count(id_post) AS count_ads
+FROM tg.post_stat ps 
+WHERE views < 150000 
+  AND DATE_TRUNC('day', date_pub)::date > '2022-10-09'
+  AND text_post NOT LIKE '%Страна%'
+  AND text_post NOT LIKE '%Жанр%'
+  AND text_post NOT LIKE '%Описание%'
+  AND text_post NOT LIKE '%Режиссер%'
+  AND text_post NOT LIKE '%Рейтинг%'
+  AND text_post NOT LIKE '%На фото кадры из фильмов%'
+  AND text_post NOT LIKE '%прошлой недели%'
+  AND text_post NOT LIKE '%Фрагмент из фильма%'
+GROUP BY day_date
+ORDER BY day_date
+)
+SELECT day_date AS "Дата",
+       count_ads "Количество",
+       round(  AVG(count_ads) OVER (ORDER BY day_date DESC
+                                 ROWS BETWEEN 49 PRECEDING AND CURRENT ROW)
+                                 ) AS "50-я скользящая средняя"
+FROM count_ads_tab
+ORDER BY day_date;
+
+

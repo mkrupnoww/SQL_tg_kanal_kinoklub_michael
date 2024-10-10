@@ -1,0 +1,14 @@
+WITH views_tab AS (
+SELECT DATE_TRUNC('day', date_pub)::date AS day_date,
+       sum(views) AS sum_views  
+FROM tg.post_stat ps 
+WHERE VIEWS < 150000 AND DATE_TRUNC('day', date_pub)::date > '2022-10-09'
+GROUP BY day_date
+)
+SELECT day_date AS "Дата",
+       sum_views "Просмотры",
+       round(  AVG(sum_views) OVER (ORDER BY day_date DESC
+                                 ROWS BETWEEN 49 PRECEDING AND CURRENT ROW)
+            ) AS "50-я скользящая средняя"
+FROM views_tab
+ORDER BY day_date;

@@ -1,16 +1,15 @@
-WITH sum_comments_tab AS (
+WITH sum_likes_tab AS (
 SELECT DATE_TRUNC('day', date_pub)::date AS day_date,
-       sum(comments) AS sum_comments
+       sum(likes) AS sum_likes
 FROM tg.post_stat ps 
 WHERE VIEWS < 150000 AND DATE_TRUNC('day', date_pub)::date > '2022-10-09'
 GROUP BY day_date
 ORDER BY day_date
 )
 SELECT day_date AS "Дата",
-       sum_comments AS "Комментарии",
-       round(  AVG(sum_comments) OVER (ORDER BY day_date DESC
+       sum_likes AS "Реакции",
+       round(  AVG(sum_likes) OVER (ORDER BY day_date DESC
                                  ROWS BETWEEN 49 PRECEDING AND CURRENT ROW)
                                  ) AS "50-я скользящая средняя"
-FROM sum_comments_tab
+FROM sum_likes_tab
 ORDER BY day_date;
-

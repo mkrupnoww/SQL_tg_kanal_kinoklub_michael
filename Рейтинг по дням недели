@@ -1,0 +1,15 @@
+SELECT 
+    CASE EXTRACT(ISODOW FROM date_pub)
+        WHEN 1 THEN 'понедельник' 
+        WHEN 2 THEN 'вторник' 
+        WHEN 3 THEN 'среда' 
+        WHEN 4 THEN 'четверг' 
+        WHEN 5 THEN 'пятница' 
+        WHEN 6 THEN 'суббота'
+        WHEN 7 THEN 'воскресенье' 
+    END AS "День недели",
+    round(avg(views)) AS "просмотры поста"
+FROM tg.post_stat ps
+GROUP BY EXTRACT(ISODOW FROM date_pub)
+ORDER BY "просмотры поста" DESC;
+
