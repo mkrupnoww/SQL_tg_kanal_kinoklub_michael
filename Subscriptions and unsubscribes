@@ -1,0 +1,6 @@
+SELECT count(date_in) AS "Подписались",
+       count(date_out) AS "Отписались",
+       count(date_in) - count(date_out) AS "Остались",
+       round(((count(date_in) - count(date_out)) / count(date_in) ::numeric  * 100), 2) AS "Процент оставшихся"
+FROM tg.subscribers_time_in_out stio 
+

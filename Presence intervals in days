@@ -1,0 +1,12 @@
+WITH pre_out_tab AS (
+SELECT date_in,
+       date_out,
+       ROUND(EXTRACT('day' FROM AGE(date_out, date_in))) AS pre_out       
+FROM tg.subscribers_time_in_out stio 
+WHERE date_out IS NOT NULL 
+)
+SELECT DISTINCT(pre_out) AS "Интервал присутствия в днях",
+       count(pre_out) OVER (PARTITION BY pre_out) AS "Количество отписок"       
+FROM pre_out_tab
+ORDER BY "Интервал присутствия в днях";
+
