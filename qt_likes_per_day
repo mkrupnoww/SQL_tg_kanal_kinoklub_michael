@@ -4,7 +4,6 @@ SELECT DATE_TRUNC('day', date_pub)::date AS day_date,
 FROM tg.post_stat ps 
 WHERE VIEWS < 150000 AND DATE_TRUNC('day', date_pub)::date > '2022-10-09'
 GROUP BY day_date
-ORDER BY day_date
 )
 SELECT day_date AS "Дата",
        sum_likes AS "Реакции",
