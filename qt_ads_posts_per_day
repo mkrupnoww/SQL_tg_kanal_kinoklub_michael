@@ -13,7 +13,6 @@ WHERE views < 150000
   AND text_post NOT LIKE '%прошлой недели%'
   AND text_post NOT LIKE '%Фрагмент из фильма%'
 GROUP BY day_date
-ORDER BY day_date
 )
 SELECT day_date AS "Дата",
        count_ads "Количество",
@@ -22,5 +21,3 @@ SELECT day_date AS "Дата",
                                  ) AS "50-я скользящая средняя"
 FROM count_ads_tab
 ORDER BY day_date;
-
-
