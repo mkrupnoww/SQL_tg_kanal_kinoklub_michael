@@ -13,7 +13,6 @@ WHERE views < 150000
   AND text_post NOT LIKE '%прошлой недели%'
   AND text_post NOT LIKE '%Фрагмент из фильма%'
 GROUP BY day_date
-ORDER BY day_date
 )
 SELECT day_date AS "Дата",
        sum_views_ads "Просмотры",
